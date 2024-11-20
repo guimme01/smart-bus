@@ -11,10 +11,13 @@ data = 0
 def home():
     percarrivo = 50
     numtick = 0
-    return render_template('home.html', percentualeArrivo=percarrivo, numpasseggeri=numpass, numticket=numtick)
+    numferm = 0
+    return render_template('home.html', percentualeArrivo=percarrivo, numpasseggeri=numpass, numticket=numtick,
+                           numfermate=numferm)
 
 
 @views.route("/laserAction", methods=["GET", "POST"])
+# mqtt.subscribe("/laserAction")
 def handle_post():
     global numpass, data
     if request.is_json:
