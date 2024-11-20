@@ -1,26 +1,25 @@
 let countdownValue = 10; // Numero di secondi iniziale
-let countdownInterval; // Variabile per salvare l'ID del setInterval
+let countdownID;
 
 // Funzione per avviare o resettare il countdown
 function startOrResetCountdown() {
     const countdownElement = document.getElementById('countdown');
 
-    // Se c'è un countdown in corso, fermalo
-    if (countdownInterval) {
-        clearInterval(countdownInterval);
+
+    if (countdownID) {
+        clearInterval(countdownID); //stop
     }
 
-    // Reimposta il valore iniziale
     countdownValue = 10;
-    countdownElement.textContent = countdownValue;
+    countdownElement.textContent = countdownValue; //reset
 
-    // Avvia il nuovo countdown
-    countdownInterval = setInterval(() => {
+
+    countdownID = setInterval(() => {
         countdownValue -= 1;
-        countdownElement.textContent = countdownValue;
+        countdownElement.textContent = countdownValue; //new countdown
 
         if (countdownValue <= 0) {
-            clearInterval(countdownInterval);
+            clearInterval(countdownID);
             countdownElement.textContent = "0"; // Imposta a 0 alla fine
         }
     }, 1000);
@@ -33,26 +32,3 @@ document.addEventListener('DOMContentLoaded', () => {
         startOrResetCountdown(); // Avvia o resetta il countdown al clic
     });
 });
-
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
-
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
-
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
